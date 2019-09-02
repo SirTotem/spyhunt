@@ -1,9 +1,7 @@
 "Gamemode"
 {
 	"base"		"base"
-	"title"		"Murder"
-	"maps"		"^md_|^mu_|^murder_"
+	"title"		"Spy Hunt"
+	"maps"		"^spy_|^spyhunt_"
 	"menusystem"	"1"
-	"workshopid" "187073946"
-	"version"	"28"
 }

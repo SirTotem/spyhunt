@@ -1,6 +1,34 @@
 
 
 GM.BystanderNameParts = {}
+GM.CodeNames = {}
+
+
+
+local function isRepeated(rnum)
+	for k,num in pairs(GM.CodeNames) do
+		if num == rnum then
+			return true
+		end
+	end
+
+	return false
+end
+
+
+local randnum
+for k,ply in pairs(players) do
+	randnum = math.random(1,99)
+	while isRepeated(randnum) do
+		randnum = math.random(1,99)
+		end
+	GM.CodeNames[k]= randnum
+end
+
+
+
+
+
 local function addPart(name, sex)
 	local tab = {}
 	tab.name = name
@@ -8,7 +36,7 @@ local function addPart(name, sex)
 	table.insert(GM.BystanderNameParts, tab)
 end
 
-/* Don't add to this list, add names to data/murder/bystander_name_parts.txt */
+
 addPart("Alfa")
 addPart("Bravo")
 addPart("Charlie")

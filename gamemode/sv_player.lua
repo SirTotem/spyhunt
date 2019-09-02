@@ -320,7 +320,7 @@ end
 
 function GM:PlayerCanPickupWeapon( ply, ent )
 
-	// can't pickup a weapon twice
+	// cant pickup a weapon twice
 	if ply:HasWeapon(ent:GetClass()) then
 		return false
 	end
@@ -342,7 +342,7 @@ function GM:PlayerCanPickupWeapon( ply, ent )
 	end
 
 	if ent:GetClass() == "weapon_mu_knife" then
-		// bystanders can't have the knife
+		// bystanders cant have the knife
 		if !ply:GetMurderer() then
 			return false
 		end

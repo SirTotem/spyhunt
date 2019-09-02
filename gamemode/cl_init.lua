@@ -22,7 +22,7 @@ include("cl_spawns.lua")
 GM.Debug = CreateClientConVar( "mu_debug", 0, true, true )
 GM.HaloRender = CreateClientConVar( "mu_halo_render", 1, true, true ) // should we render halos
 GM.HaloRenderLoot = CreateClientConVar( "mu_halo_loot", 1, true, true ) // shouuld we render loot halos
-GM.HaloRenderKnife = CreateClientConVar( "mu_halo_knife", 1, true, true ) // shouuld we render murderer's knife halos
+GM.HaloRenderKnife = CreateClientConVar( "mu_halo_knife", 1, true, true ) // shouuld we render murderers knife halos
 
 function GM:Initialize() 
 	self:FootStepsInit()
@@ -63,6 +63,7 @@ function GM:Think()
 				//particle:SetGravity( Vector( 0, 0, 10 ) )
 			end
 		else
+            //Para el fum
 			if ply.FogEmitter then
 				ply.FogEmitter:Finish()
 				ply.FogEmitter = nil

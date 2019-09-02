@@ -1,10 +1,10 @@
-GM.Name 	= "Murder"
-GM.Author 	= "MechanicalMind"
-// credits to Minty Fresh for some styling on the scoreboard
-// credits to Waddlesworth for the logo and menu icon
+GM.Name 	= "Spy Hunt"
+GM.Author 	= "Peleplax"
+// credits to Mechanical Mind, Minty Fresh, Waddlesworth for setting the base with the gamemode Murder
+// credits to Code Blue for his tutorials on youtube, check them out!  https://www.youtube.com/channel/UCFpuE-Qjn4EWqX-VJ_l7pbw
 GM.Email 	= ""
-GM.Website 	= "www.codingconcoctions.com/murder/"
-GM.Version = "28"
+GM.Website 	= ""
+GM.Version = "1"
 
 function GM:SetupTeams()
 	team.SetUp(1, translate.teamSpectators, Color(150, 150, 150))
