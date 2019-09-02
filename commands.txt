@@ -15,6 +15,8 @@ Loot
 	mu_loot_respawn - Respawns all loot
 	mu_loot_models_list - Lists all model aliases, these can be used instead of model filenames in mu_loot_add
 
+
+
 Misc
 	mu_taunt <category> - Plays a random taunt sound
 	mu_jointeam <team> - Trys to join the specified team
