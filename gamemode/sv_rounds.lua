@@ -259,8 +259,13 @@ function GM:EndTheRound(reason, murderer)
 end
 
 function GM:StartNewRound()
+	 player.CreateNextBot( "Bot_" .. ( 4 ) )
+	 player.CreateNextBot( "Bot_" .. ( 3 ) )
+	 player.CreateNextBot( "Bot_" .. ( 2 ) )
+
 	local players = team.GetPlayers(2)
-	if #players <= 1 then 
+	// Canviar aixo a minim 3
+	if #players < 3 then 
 		local ct = ChatText()
 		ct:Add(translate.minimumPlayers, Color(255, 150, 50))
 		ct:SendAll()
@@ -319,13 +324,15 @@ function GM:StartNewRound()
 			ply:SetMurderer(false)
 		end
 		ply:StripWeapons()
+				
+		ply:SetMurderer()
 		ply:KillSilent()
 		ply:Spawn()
 		ply:Freeze(true)
 		local vec = Vector(0, 0, 0)
-		vec.x = math.Rand(0, 1)
-		vec.y = math.Rand(0, 1)
-		vec.z = math.Rand(0, 1)
+		vec.x = math.random(0,1)
+		vec.y = vec.x
+		vec.z = vec.x
 		ply:SetPlayerColor(vec)
 
 		ply.LootCollected = 0
@@ -334,6 +341,15 @@ function GM:StartNewRound()
 		ply:SetTKer(false)
 		ply:CalculateSpeed()
 		ply:GenerateBystanderName()
+		ply:GenerateCode(k * 4)
+		
+		local n= math.random(1,#players) 
+		while n == k do
+			n= math.random(1,#players)
+		end
+		ply:setTarget(players[n])
+		
+		ply:Give( "weapon_crossbow", bNoAmmo=false )
 	end
 	local noobs = table.Copy(players)
 	table.RemoveByValue(noobs, murderer)
@@ -343,8 +359,6 @@ function GM:StartNewRound()
 	end
 
 	self.MurdererLastKill = CurTime()
-
-	hook.Call("OnStartRound")
 end
 
 function GM:PlayerLeavePlay(ply)

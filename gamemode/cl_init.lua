@@ -82,10 +82,6 @@ function GM:Think()
 end
 
 
-function GM:EntityRemoved(ent)
-
-end
-
 function GM:PostDrawViewModel( vm, ply, weapon )
 
 	if ( weapon.UseHands || !weapon:IsScripted() ) then

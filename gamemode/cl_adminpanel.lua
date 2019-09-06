@@ -60,6 +60,9 @@ local function addPlayerItem(self, mlist, ply, pteam)
 
 			draw.DrawText(ply:GetBystanderName(), "ScoreboardPlayer", w * 0.4 + 1, 9, color_black, 0)
 			draw.DrawText(ply:GetBystanderName(), "ScoreboardPlayer", w * 0.4, 8, color_white, 0)
+			
+			draw.DrawText(ply:GetBystanderCode(), "ScoreboardPlayer", w * 0.4 - 1, 9, color_black, 0)
+			draw.DrawText(ply:GetBystanderCode(), "ScoreboardPlayer", w * 0.4 - 2, 8, color_white, 0)
 
 			local status = translate.bystander
 			local statusColor = team.GetColor(2)

@@ -7,7 +7,9 @@ for k, folder in pairs(folders) do
 	for k, filename in pairs(files) do
 		if filename:sub(1, 3) == "cl_" || filename:sub(1, 3) == "sh_" || filename == "shared.lua"
 			|| folder:match("/sh_") || folder:match("/cl_") then
-			AddCSLuaFile(folder .. filename)
+			AddCSLuaFile(folder .. filename) 
+			
+			// AddCSLuaFile to all files in gamemode
 		end
 	end
 	for k, subfolder in pairs(subfolders) do
@@ -50,6 +52,8 @@ GM.DelayAfterEnoughPlayers = CreateConVar("mu_delay_after_enough_players", 10, b
 GM.FlashlightBattery = CreateConVar("mu_flashlight_battery", 10, bit.bor(FCVAR_NOTIFY), "How long the flashlight should last in seconds (0 for infinite)" )
 GM.Language = CreateConVar("mu_language", "", bit.bor(FCVAR_NOTIFY), "The language Murder should use" )
 
+GM.GlobalClue = CreateConVar("mu_globalclue", "", bit.bor(FCVAR_NOTIFY), "You got a global clue" )
+
 // replicated
 GM.ShowAdminsOnScoreboard = CreateConVar("mu_scoreboard_show_admins", 1, bit.bor(0), "Should show admins on scoreboard" )
 GM.AdminPanelAllowed = CreateConVar("mu_allow_admin_panel", 1, bit.bor(FCVAR_NOTIFY), "Should allow admins to use mu_admin_panel" )
@@ -63,7 +67,7 @@ function GM:Initialize()
 	self:LoadMapList()
 	self:LoadBystanderNames()
 end
-
+/*
 function GM:InitPostEntity() 
 	local canAdd = self:CountLootItems() <= 0
 	for k, ent in pairs(ents.FindByClass("mu_loot")) do
@@ -73,6 +77,7 @@ function GM:InitPostEntity()
 	end
 	self:InitPostEntityAndMapCleanup()
 end
+*/
 
 function GM:InitPostEntityAndMapCleanup() 
 	for k, ent in pairs(ents.GetAll()) do
@@ -114,20 +119,6 @@ function GM:Think()
 	end
 end
 
-function GM:AllowPlayerPickup( ply, ent )
-	return true
-end
-
-function GM:PlayerNoClip( ply )
-	return ply:IsListenServerHost() || ply:GetMoveType() == MOVETYPE_NOCLIP
-end
-
-function GM:OnEndRound()
-end
-
-function GM:OnStartRound()
-end
-
 function GM:SendMessageAll(msg) 
 	for k,v in pairs(player.GetAll()) do
 		v:ChatPrint(msg)
@@ -162,9 +153,9 @@ end
 
 concommand.Add("mu_version", function (ply)
 	if IsValid(ply) then
-		ply:ChatPrint("Murder by Mechanical Mind version " .. tostring(GAMEMODE.Version or "error"))
+		ply:ChatPrint("Spy Hunt by Peleplax " .. tostring(GAMEMODE.Version or "error"))
 	else
-		print("Murder by Mechanical Mind version " .. tostring(GAMEMODE.Version or "error"))
+		print("Spy Hunt by Peleplax " .. tostring(GAMEMODE.Version or "error"))
 	end
 end)
 

@@ -6,6 +6,9 @@ local EntityMeta = FindMetaTable("Entity")
 function GM:PlayerInitialSpawn( ply )
 	ply.LootCollected = 0
 	ply.MurdererChance = 1
+	
+	ply.clues = {}
+	
 
 	timer.Simple(0, function ()
 		if IsValid(ply) then
@@ -23,7 +26,17 @@ function GM:PlayerInitialSpawn( ply )
 	local vec = Vector(0.5, 0.5, 0.5)
 	ply:SetPlayerColor(vec)
 end
+///
+function GM:SetTarget( ply )
+	ply.target = ply
+	
+end
 
+function player:GetTarget()
+	return self.target
+	
+end
+////
 function GM:PlayerSpawn( ply )
 
 	-- If the player doesn't have a team

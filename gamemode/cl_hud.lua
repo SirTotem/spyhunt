@@ -297,6 +297,7 @@ function GM:DrawGameHUD(ply)
 		local w,h = surface.GetTextSize(ply:GetBystanderName())
 		local x = math.max(size * 0.6 + w / -2, size * 0.1)
 		drawTextShadow(ply:GetBystanderName(), "MersRadialSmall", x, ScrH() - size * 1.1, col, 0, TEXT_ALIGN_BOTTOM)
+		drawTextShadow(ply:GetBystanderCode(), "MersRadialSmall", x + 30, ScrH() - size * 1.1, col, 0, TEXT_ALIGN_BOTTOM)
 	end
 
 	local shouldDraw = hook.Run("HUDShouldDraw", "MurderFlashlightCharge")

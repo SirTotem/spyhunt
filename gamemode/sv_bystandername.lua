@@ -17,17 +17,18 @@ end
 
 
 local randnum
-for k,ply in pairs(players) do
+
+for k,ply in pairs(team.GetPlayers(2)) do
 	randnum = math.random(1,99)
 	while isRepeated(randnum) do
 		randnum = math.random(1,99)
 		end
-	GM.CodeNames[k]= randnum
+	table.insert(GM.CodeNames, randnum)
 end
 
 
 
-
+///////////////
 
 local function addPart(name, sex)
 	local tab = {}
@@ -68,8 +69,10 @@ local PlayerMeta = FindMetaTable("Player")
 local EntityMeta = FindMetaTable("Entity")
 
 GM.BystanderWords = CreateClientConVar( "mu_bystandername_words", 1, FCVAR_ARCHIVE, "Number of words to generate for bystander name" )
+GM.CodeWords = CreateClientConVar( "mu_code_words", 1, FCVAR_ARCHIVE, "Number of words to generate for code name" )
 
 // adds a name to the bystander parts generation table
+
 function GM:AddBystanderNamePart(name, sex)
 	name = tostring(name)
 	if !name then error("arg 1 must be a string") end
@@ -144,6 +147,7 @@ function EntityMeta:GenerateBystanderName()
 	self.BystanderName = name
 end
 
+
 function EntityMeta:SetBystanderName(name)
 	self:SetNWString("bystanderName", name)
 	self.BystanderName = name
@@ -156,6 +160,30 @@ function EntityMeta:GetBystanderName()
 	end
 	return name
 end
+
+///////////////////
+
+function EntityMeta:GenerateCode(number)
+	local words = math.max(1, GAMEMODE.CodeWords:GetInt())
+	local code = number
+	self:SetNWString("code", code)
+	self.code = code
+end
+
+function EntityMeta:SetBystanderCode(code)
+	self:SetNWString("code", code)
+	self.code = code
+end
+
+function EntityMeta:GetBystanderCode()
+	local code = self:GetNWString("code")
+	if !code || code == "" then
+		return "0" 
+	end
+	return code
+end
+
+//////////////
 
 concommand.Add("mu_print_players", function (admin, com, args)
 	if !admin:IsAdmin() then return end

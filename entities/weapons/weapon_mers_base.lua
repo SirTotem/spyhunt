@@ -33,7 +33,7 @@ SWEP.Spawnable		= true
 SWEP.AdminSpawnable	= true
 SWEP.UseHands = true
 
-SWEP.Author			= "Mechanical Mind"
+SWEP.Author			= "Peleplax"
 SWEP.Contact		= ""
 SWEP.Purpose		= ""
 SWEP.Instructions	= ""
